@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "TraktAPI";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Message</h2>
+
+<script src="~/Scripts/TraktAPI/traktApp.js"></script>
+<script src="~/Scripts/TraktAPI/traktAPIController.js"></script>
+
+<div ng-app="traktApp" ng-controller="traktAPIController">
+    <form>
+        <input ng-model="searchtext" type="text" id="searchText" name="searchText" />
+        <input type="submit" ng-click="getData()" id="fetchData" value="Get data"/>
+    </form>
+    <div style="padding-bottom: 5px"></div>
+
+    <table class="table">
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Year
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                imdbID
+            </th>
+        </tr>
+
+        <tr ng-repeat="item in search">
+            <td>
+                {{item.Title}}
+            </td>
+            <td>
+                {{item.Year}}
+            </td>
+            <td>
+                {{item.Type}}
+            </td>
+            <td>
+                {{item.imdbID}}
+            </td>
+        </tr>
+    </table>
+</div>
+
+@*<div ng-app="mainApp">
+    <div ng-controller="guildWarsController">
+        <div id="myList">
+            <div ng-repeat="item in items">
+                ID: {{item}}
+            </div>
+        </div>
+    </div>
+</div>*@

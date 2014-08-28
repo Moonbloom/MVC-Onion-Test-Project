@@ -1,0 +1,1 @@
+﻿var omdbApp = angular.module('omdbApp', ['omdbAPIController']); //, 'OMDBService']);

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Web.Models.TaskViewModel>
+
+@{
+    ViewBag.Title = "Rem'It";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Message</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Headline
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Created On
+        </th>
+        <th>
+            Completed
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Headline)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Completed)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditTask", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "DeleteTask", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.ActionLink("Create new task", "CreateTask", "Task", new { area = "" }, new { @class = "btn btn-success" })
