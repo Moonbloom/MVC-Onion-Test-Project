@@ -18,11 +18,13 @@ namespace Web.Controllers
         private readonly IUnitOfWork _uow;
         #endregion
 
+        #region Constructor
         public TaskController(IGenericRepository<Task> repo, IUnitOfWork uow)
         {
             _repo = repo;
             _uow = uow;
         }
+        #endregion
 
         #region Index
         public ActionResult Index()
@@ -124,6 +126,16 @@ namespace Web.Controllers
             var tvm = Mapper.Map<TaskViewModel>(model);
 
             return View(tvm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteTask(int id)
+        {
+            _repo.DeleteByKey(id);
+            _uow.Save();
+
+            return RedirectToAction("Index");
         }
         #endregion
     }
