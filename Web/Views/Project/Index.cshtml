@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Web.Models.ProjectViewModel>
+
+@{
+    ViewBag.Title = "Projects";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Message</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Task count
+        </th>
+        <th>
+            Total task hours
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tasks.ToList().Count)
+            </td>
+            <td>
+                @item.Tasks.Sum(i => i.HoursToComplete)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditProject", "Project", new { id = item.ProjectID }, new { @class = "" }) |
+                @Html.ActionLink("Delete", "DeleteProject", "Project", new { id = item.ProjectID }, new { @class = "delete-button-red-color" })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -47,7 +47,7 @@ namespace Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateTask([Bind(Include = "Id, CreatedOn, Headline, Description, Completed")] TaskViewModel task)
+        public ActionResult CreateTask([Bind(Include = "TaskID, CreatedOn, Headline, Description, Completed")] TaskViewModel task)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditTask([Bind(Include = "Id, CreatedOn, Headline, Description, Completed")] TaskViewModel task)
+        public ActionResult EditTask([Bind(Include = "TaskID, CreatedOn, Headline, Description, Completed")] TaskViewModel task)
         {
             Debug.WriteLine(task.ToString());
 

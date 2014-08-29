@@ -11,38 +11,50 @@
 <div ng-app="traktApp" ng-controller="traktAPIController">
     <form>
         <input ng-model="searchtext" type="text" id="searchText" name="searchText" />
-        <input type="submit" ng-click="getData()" id="fetchData" value="Get data"/>
+        <input type="submit" ng-click="getData()" id="fetchData" value="Get data" />
     </form>
     <div style="padding-bottom: 5px"></div>
 
     <table class="table">
         <tr>
             <th>
-                Title
+                Poster
             </th>
             <th>
-                Year
+                Title
             </th>
             <th>
                 Type
             </th>
             <th>
-                imdbID
+                Release Year
+            </th>
+            <th>
+                Trailer Link
+            </th>
+            <th>
+                imdb link
             </th>
         </tr>
 
-        <tr ng-repeat="item in search">
+        <tr ng-repeat="dataItem in searchData">
             <td>
-                {{item.Title}}
+                <img class="img-rounded" height="100px" src="{{dataItem.images.poster}}" />
             </td>
             <td>
-                {{item.Year}}
+                {{dataItem.title}}
             </td>
             <td>
-                {{item.Type}}
+                {{dataItem.type}}
             </td>
             <td>
-                {{item.imdbID}}
+                {{dataItem.year}}
+            </td>
+            <td>
+                <a href="{{dataItem.trailer}}" target="_blank">{{dataItem.trailer}}</a>
+            </td>
+            <td>
+                <a href="http://www.imdb.com/title/{{dataItem.imdb_id}}" target="_blank">{{dataItem.imdb_id}}</a>
             </td>
         </tr>
     </table>

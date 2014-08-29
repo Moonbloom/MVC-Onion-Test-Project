@@ -12,6 +12,7 @@ namespace Web
         public static void Start()
         {
             Mapper.CreateMap<Task, TaskViewModel>().ReverseMap();
+            Mapper.CreateMap<Project, ProjectViewModel>().ReverseMap();
         }
     }
 }

@@ -40,8 +40,8 @@
                 @Html.DisplayFor(modelItem => item.Completed)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditTask", "Task", new { id = item.Id }, new { @class = ""}) |
-                @Html.ActionLink("Delete", "DeleteTask", new { id = item.Id }, new { @class = "delete-button-red-color" })
+                @Html.ActionLink("Edit", "EditTask", "Task", new { id = item.TaskID }, new { @class = ""}) |
+                @Html.ActionLink("Delete", "DeleteTask", "Task", new { id = item.TaskID }, new { @class = "delete-button-red-color" })
             </td>
         </tr>
     }
