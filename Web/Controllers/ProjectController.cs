@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper;
+﻿using AutoMapper;
 using Core.DomainModel;
 using Core.DomainServices;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 using Web.Models;
 
 namespace Web.Controllers
@@ -30,7 +28,7 @@ namespace Web.Controllers
         {
             ViewBag.Message = "Projects";
 
-            var listModel = _repo.Get().ToList();
+            var listModel = _repo.Get(includeProperties: "Tasks").ToList();
 
             var listViewModel = Mapper.Map<IEnumerable<ProjectViewModel>>(listModel);
 
@@ -39,76 +37,82 @@ namespace Web.Controllers
         #endregion
 
         #region Details
-        public ActionResult DetailsProject(int id)
+        public ActionResult TaskIndex(int ID)
         {
-            return View();
+            ViewBag.Message = "Tasks";
+
+            var projectModel = _repo.GetByKey(ID);
+
+            var projectViewModel = Mapper.Map<ProjectViewModel>(projectModel);
+
+            return View(projectViewModel);
         }
         #endregion
 
-        #region Create
-        public ActionResult CreateProject()
-        {
-            return View();
-        }
+        //#region Create
+        //public ActionResult CreateProject()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        public ActionResult CreateProject(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
+        //[HttpPost]
+        //public ActionResult CreateProject(FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        #endregion
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
+        //#endregion
 
-        #region Edit
-        public ActionResult EditProject(int id)
-        {
-            return View();
-        }
+        //#region Edit
+        //public ActionResult EditProject(int id)
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        public ActionResult EditProject(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+        //[HttpPost]
+        //public ActionResult EditProject(int id, FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add update logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        #endregion
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
+        //#endregion
 
-        #region Delete
-        public ActionResult DeleteProject(int id)
-        {
-            return View();
-        }
+        //#region Delete
+        //public ActionResult DeleteProject(int id)
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        public ActionResult DeleteProject(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
+        //[HttpPost]
+        //public ActionResult DeleteProject(int id, FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        #endregion
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
+        //#endregion
     }
 }

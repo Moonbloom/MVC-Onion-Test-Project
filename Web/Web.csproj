@@ -51,6 +51,9 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="Facebook">
+      <HintPath>..\packages\Facebook.6.8.0\lib\net45\Facebook.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -308,7 +311,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\OmdbAPI.cshtml" />
     <Content Include="Views\Home\TraktAPI.cshtml" />
-    <Content Include="Views\Task\Index.cshtml" />
+    <Content Include="Views\Project\TaskIndex.cshtml" />
     <Content Include="Views\Task\EditTask.cshtml" />
     <Content Include="Views\Task\DeleteTask.cshtml" />
     <Content Include="Views\Task\CreateTask.cshtml" />

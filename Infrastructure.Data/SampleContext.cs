@@ -10,8 +10,6 @@ namespace Infrastructure.Data
             Database.SetInitializer<SampleContext>(new SampleSeedInitializer());
         }
 
-        public IDbSet<Task> Tasks { get; set; } 
-
         public IDbSet<Project> Projects { get; set; } 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

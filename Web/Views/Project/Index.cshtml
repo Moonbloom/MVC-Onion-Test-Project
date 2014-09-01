@@ -25,7 +25,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                <a href="@Url.Action("TaskIndex", new { id = item.ProjectID})">@Html.DisplayFor(modelItem => item.Name)</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Tasks.ToList().Count)
@@ -41,3 +41,5 @@
     }
 
 </table>
+
+@Html.ActionLink("Create new project", "CreateProject", "Project", new { area = "" }, new { @class = "btn btn-success" })

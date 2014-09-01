@@ -15,6 +15,7 @@ namespace Core.DomainModel
         public int HoursToComplete { get; set; }
 
         public virtual Project Project { get; set; }
+        public int ProjectID { get; set; }
         #endregion
     }
 }

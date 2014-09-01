@@ -16,6 +16,9 @@ namespace Web.Models
         public string Description { get; set; }
         public bool Completed { get; set; }
         public int HoursToComplete { get; set; }
+
+        public ProjectViewModel Project { get; set; }
+        public int ProjectID { get; set; }
         #endregion
 
         public override string ToString()

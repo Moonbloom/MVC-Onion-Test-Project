@@ -8,10 +8,12 @@ namespace Web.Models
 {
     public class ProjectViewModel
     {
+        #region Variables
         public int ProjectID { get; set; }
 
         public string Name { get; set; }
 
-        public virtual IEnumerable<Task> Tasks { get; set; }
+        public List<TaskViewModel> Tasks { get; set; }
+        #endregion
     }
 }

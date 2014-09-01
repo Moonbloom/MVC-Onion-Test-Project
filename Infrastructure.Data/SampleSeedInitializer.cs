@@ -18,10 +18,8 @@ namespace Infrastructure.Data
                 Description = "This is a task that i am testing with",
                 Headline = "Complete this page"
             };
-            context.Tasks.Add(testTask);
 
-            var taskList = new List<Task>();
-            taskList.Add(testTask);
+            var taskList = new List<Task> {testTask};
 
             var testProject = new Project()
             {

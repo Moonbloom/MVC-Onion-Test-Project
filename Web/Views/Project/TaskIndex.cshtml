@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Web.Models.TaskViewModel>
+﻿@model Web.Models.ProjectViewModel
 
 @{
-    ViewBag.Title = "Rem'It";
+    ViewBag.Title = "Tasks";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -16,7 +16,7 @@
             Description
         </th>
         <th>
-            Created On
+            Created Date
         </th>
         <th>
             Completed
@@ -24,7 +24,7 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.Tasks)
     {
         <tr>
             <td>
@@ -40,12 +40,12 @@
                 @Html.DisplayFor(modelItem => item.Completed)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditTask", "Task", new { id = item.TaskID }, new { @class = ""}) |
-                @Html.ActionLink("Delete", "DeleteTask", "Task", new { id = item.TaskID }, new { @class = "delete-button-red-color" })
+                @Html.ActionLink("Edit", "EditTask", "Task", new {@Model.ProjectID, item.TaskID}, new { @class = ""}) |
+                @Html.ActionLink("Delete", "DeleteTask", "Task", new {@Model.ProjectID, item.TaskID}, new { @class = "delete-button-red-color" })
             </td>
         </tr>
     }
 
 </table>
 
-@Html.ActionLink("Create new task", "CreateTask", "Task", new { area = "" }, new { @class = "btn btn-success" })
+@Html.ActionLink("Create new task", "CreateTask", "Task", new {@Model.ProjectID}, new { @class = "btn btn-success" })

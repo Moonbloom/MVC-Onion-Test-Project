@@ -24,7 +24,6 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("OmdbAPI", "OmdbAPI", "Home")</li>
                     <li>@Html.ActionLink("TraktAPI", "TraktAPI", "Home")</li>
-                    <li>@Html.ActionLink("Rem'It", "Index", "Task")</li>
                     <li>@Html.ActionLink("Projects", "Index", "Project")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -39,6 +38,6 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     
-    @RenderSection("scripts", required: false)
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
