@@ -1,0 +1,1 @@
+﻿var facebookApp = angular.module('facebookApp', ['facebookFriendListController']);

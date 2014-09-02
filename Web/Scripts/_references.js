@@ -14,3 +14,5 @@
 /// <reference path="omdbapi/omdbapp.js" />
 /// <reference path="traktapi/traktapicontroller.js" />
 /// <reference path="traktapi/traktapp.js" />
+/// <reference path="facebook/facebookapp.js" />
+/// <reference path="facebook/facebookfriendlistcontroller.js" />

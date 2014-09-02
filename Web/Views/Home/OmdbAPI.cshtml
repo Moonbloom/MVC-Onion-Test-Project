@@ -9,7 +9,7 @@
 <script src="~/Scripts/OmdbAPI/omdbAPIController.js"></script>
 
 <div ng-app="omdbApp" ng-controller="omdbAPIController">
-    <form class="search-bar">
+    <form class="five-px-margin-bottom">
         <input ng-model="searchtext" type="text" id="searchText" name="searchText" />
         <input type="submit" ng-click="getData()" id="fetchData" value="Get data" />
     </form>
