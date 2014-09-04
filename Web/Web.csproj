@@ -198,6 +198,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FacebookController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KnockoutController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Controllers\SocialAuthController.cs" />
@@ -266,6 +267,10 @@
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\Facebook\facebookApp.js" />
     <Content Include="Scripts\Facebook\facebookFriendListController.js" />
+    <Content Include="Scripts\JSControllers\MovieListController.js" />
+    <Content Include="Scripts\JSViewModels\MovieListViewModel.js" />
+    <Content Include="Scripts\knockout-3.2.0.debug.js" />
+    <Content Include="Scripts\knockout-3.2.0.js" />
     <Content Include="Scripts\OmdbAPI\omdbApp.js" />
     <Content Include="Scripts\OmdbAPI\getOMDBSearchResult.js" />
     <Content Include="Scripts\OmdbAPI\omdbAPIController.js" />
@@ -333,6 +338,7 @@
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Facebook\Index.cshtml" />
     <Content Include="Views\SocialAuth\Index.cshtml" />
+    <Content Include="Views\Knockout\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

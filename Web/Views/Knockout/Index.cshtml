@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Knockout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Message</h2>
+
+<script src="~/Scripts/JSViewModels/MovieListViewModel.js"></script>
+<script src="~/Scripts/JSControllers/MovieListController.js"></script>
+
+<div id="movieListDiv">
+    <input type="text" data-bind="value: searchText" />
+    <button id="clearBtn" class="btn btn-warning">Clear</button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Year
+                </th>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Type
+                </th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: movieList">
+            <tr>
+                <td data-bind="text: Title"></td>
+                <td data-bind="text: Year"></td>
+                <td data-bind="text: imdbID"></td>
+                <td data-bind="text: Type"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    var movController = new MovieListController(new MovieListViewModel());
+
+    $(document).ready(function () {
+        console.log("doc ready");
+        movController.init($("#movieListDiv"));
+        movController.bindClearBtnTo("click", $("#clearBtn"));
+    });
+</script>

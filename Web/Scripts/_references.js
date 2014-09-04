@@ -16,3 +16,6 @@
 /// <reference path="traktapi/traktapp.js" />
 /// <reference path="facebook/facebookapp.js" />
 /// <reference path="facebook/facebookfriendlistcontroller.js" />
+/// <reference path="knockout-3.2.0.js" />
+/// <reference path="jsviewmodels/movielistviewmodel.js" />
+/// <reference path="jscontrollers/movielistcontroller.js" />
