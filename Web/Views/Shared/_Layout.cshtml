@@ -9,6 +9,8 @@
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/knockoutjs")
+    <script src="~/Scripts/EnPlan/Services/NotificationService.js"></script>
+    <script src="~/Scripts/EnPlan/Services/AjaxService.js"></script>
 
 </head>
 <body>
@@ -29,7 +31,8 @@
                     <li>@Html.ActionLink("Projects", "Index", "Project")</li>
                     <li>@Html.ActionLink("Facebook", "Index", "Facebook")</li>
                     @*<li>@Html.ActionLink("SocialAuth", "Index", "SocialAuth")</li>*@
-                    <li>@Html.ActionLink("Knockout", "Index", "Knockout")</li>
+                    <li>@Html.ActionLink("EnPlanTest", "Index", "EnPlanTest")</li>
+                    <li>@Html.ActionLink("ProjectWebApi", "Index", "ProjectWebApi")</li>
                 </ul>
                 @*@Html.Partial("_LoginPartial")*@
             </div>
@@ -42,6 +45,10 @@
 
     @Scripts.Render("~/bundles/bootstrap")
     
+    <script type="text/javascript">
+        var notify = new NotificationService($("body"));
+    </script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

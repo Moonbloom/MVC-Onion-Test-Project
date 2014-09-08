@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "EnPlanTest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Message</h2>
+
+<script src="~/Scripts/EnPlan/JSViewModels/MovieListViewModel.js"></script>
+<script src="~/Scripts/EnPlan/JSControllers/MovieListController.js"></script>
+
+<div id="movieListDiv">
+    <div id="searchBlock">
+        <input type="text" data-bind="value: searchText" />
+        <button id="clearBtn" class="btn btn-warning">Clear</button>
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                <span data-bind="text: chosenDropDownItemName"></span>
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <!-- ko foreach: dropdownMenuItems -->
+                <li><a href="#" data-bind="text: Name" class="dropdownMenu"></a></li>
+                <!-- /ko -->
+            </ul>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Year
+                </th>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Type
+                </th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: movieList">
+            <tr>
+                <td>
+                    <img alt="Image poster" class="img-rounded img-poster" data-bind="attr: {src: images.poster}"/>
+                </td>
+                <td data-bind="text: title"></td>
+                <td data-bind="text: year"></td>
+                <td data-bind="text: imdb_id"></td>
+                <td data-bind="text: type"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    var notify = new NotificationService($("body"));
+    var movController = new MovieListController(new MovieListViewModel(), notify);
+
+    $(document).ready(function () {
+        movController.init($("#movieListDiv"));
+        movController.bindClearBtnTo("click", $("#clearBtn"));
+        movController.bindDropdownBtnTo("click", $(".dropdownMenu"));
+    });
+</script>

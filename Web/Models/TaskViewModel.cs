@@ -1,6 +1,7 @@
 ﻿using Core.DomainModel;
 using System;
 using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 namespace Web.Models
 {
@@ -17,6 +18,7 @@ namespace Web.Models
         public bool Completed { get; set; }
         public int HoursToComplete { get; set; }
 
+        [JsonIgnore]
         public ProjectViewModel Project { get; set; }
         public int ProjectID { get; set; }
         #endregion

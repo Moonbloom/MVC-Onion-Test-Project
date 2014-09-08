@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "ProjectWebApi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Message</h2>
+
+<script src="~/Scripts/EnPlan/JSViewModels/ProjectWebApiViewModel.js"></script>
+<script src="~/Scripts/EnPlan/JSControllers/ProjectWebApiController.js"></script>
+<script src="~/Scripts/EnPlan/Services/BackendServices/ProjectBackendService.js"></script>
+
+<div id="outerDivProjectWebApi">
+    <input type="number" data-bind="value: searchId" />
+    <button id="getProjectInfoBtn" class="btn btn-success">Get Project info</button>
+    <br/>
+    <button id="getProjectNamesBtn" class="btn btn-success">Get Project names</button>
+</div>
+
+<script type="text/javascript">
+    var notify = new NotificationService($("body"));
+    var pwa = new ProjectWebApiController(new ProjectBackendService(new AjaxService(notify)), new ProjectWebApiViewModel(), notify);
+
+    $(document).ready(function () {
+        pwa.init($("#outerDivProjectWebApi"));
+        pwa.bindGetProjectNamesBtnTo("click", $("#getProjectNamesBtn"));
+        pwa.bindGetProjectInfoBtnTo("click", $("#getProjectInfoBtn"));
+    });
+</script>

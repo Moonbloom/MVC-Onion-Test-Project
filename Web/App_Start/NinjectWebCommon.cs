@@ -47,6 +47,7 @@ namespace Web
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
+
                 return kernel;
             }
             catch
@@ -65,6 +66,6 @@ namespace Web
             kernel.Bind<SampleContext>().ToSelf().InRequestScope();
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
             kernel.Bind(typeof(IGenericRepository<>)).To(typeof(GenericRepository<>));
-        }
+        }        
     }
 }

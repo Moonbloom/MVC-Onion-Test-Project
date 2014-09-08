@@ -8,12 +8,17 @@ namespace Web.Models
 {
     public class ProjectViewModel
     {
+        public ProjectViewModel()
+        {
+            Tasks = new HashSet<TaskViewModel>();
+        }
+
         #region Variables
         public int ProjectID { get; set; }
 
         public string Name { get; set; }
 
-        public List<TaskViewModel> Tasks { get; set; }
+        public virtual ICollection<TaskViewModel> Tasks { get; set; }
         #endregion
     }
 }

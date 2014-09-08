@@ -68,6 +68,7 @@ $(document).ready(function () {
     }(document, 'script', 'facebook-jssdk'));
 });
 
-var login_event = function(response) {
+var login_event = function (response) {
+    console.log(response);
     accessToken = response.authResponse.accessToken;
 };
