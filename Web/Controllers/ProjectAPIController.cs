@@ -35,9 +35,7 @@ namespace Web.Controllers
         {
             var project = _repo.GetByKey(id);
 
-            var pvm = AutoMapper.Mapper.Map<ProjectViewModel>(project);
-
-            return pvm;
+            return AutoMapper.Mapper.Map<ProjectViewModel>(project);
         }
     }
 }

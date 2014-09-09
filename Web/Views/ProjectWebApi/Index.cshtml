@@ -10,10 +10,90 @@
 <script src="~/Scripts/EnPlan/Services/BackendServices/ProjectBackendService.js"></script>
 
 <div id="outerDivProjectWebApi">
-    <input type="number" data-bind="value: searchId" />
-    <button id="getProjectInfoBtn" class="btn btn-success">Get Project info</button>
-    <br/>
-    <button id="getProjectNamesBtn" class="btn btn-success">Get Project names</button>
+    <div>
+        <input type="number" data-bind="value: searchId" />
+        <button id="getProjectInfoBtn" class="btn btn-success">Get Project info</button>
+        <br />
+        <button style="margin-top: 5px" id="getProjectNamesBtn" class="btn btn-success">Get Project names</button>
+        <button style="margin-top: 5px" id="clearBtn" class="btn btn-warning">Clear</button>
+    </div>
+    <div style="margin-top: 10px" data-bind="'visible': View() == 1">
+        <ul data-bind="foreach: projNames">
+            <li data-bind="text: $data"></li>
+        </ul>
+    </div>
+    <div data-bind="'visible': View() == 2">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Project ID
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-bind="with:projInfo">
+                        <div data-bind="text: Name"></div>
+                    </td>
+                    <td data-bind="with:projInfo">
+                        <div data-bind="text: ProjectID"></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <hr/>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        Task ID
+                    </th>
+                    <th>
+                        Headline
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Hours to complete
+                    </th>
+                    <th>
+                        Completed
+                    </th>
+                    <th>
+                        Created
+                    </th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: taskList">
+                <tr>
+                    <td>
+                        <div data-bind="text: TaskID"></div>
+                    </td>
+                    <td>
+                        <div data-bind="text: Headline"></div>
+                    </td>
+                    <td>
+                        <div data-bind="text: Description"></div>
+                    </td>
+                    <td>
+                        <div data-bind="text: HoursToComplete"></div>
+                    </td>
+                    <td>
+                        <input type="checkbox" disabled="disabled" data-bind="checked: Completed"/>
+                    </td>
+                    <td>
+                        <div data-bind="text: CreatedOn"></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>
 
 <script type="text/javascript">
@@ -24,5 +104,6 @@
         pwa.init($("#outerDivProjectWebApi"));
         pwa.bindGetProjectNamesBtnTo("click", $("#getProjectNamesBtn"));
         pwa.bindGetProjectInfoBtnTo("click", $("#getProjectInfoBtn"));
+        pwa.bindClearBtnTo("click", $("#clearBtn"));
     });
 </script>

@@ -34,7 +34,7 @@
                 @item.Tasks.Sum(i => i.HoursToComplete)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditProject", "Project", new { id = item.ProjectID }, new { @class = "" }) |
+                @*@Html.ActionLink("Edit", "EditProject", "Project", new { id = item.ProjectID }, new { @class = "" }) |*@
                 @Html.ActionLink("Delete", "DeleteProject", "Project", new { id = item.ProjectID }, new { @class = "delete-button-red-color" })
             </td>
         </tr>

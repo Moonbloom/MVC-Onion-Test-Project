@@ -27,20 +27,23 @@ namespace Web.Controllers
         #endregion
 
         #region Create
-        public ActionResult CreateTask(int ProjectID)
+        public ActionResult CreateTask(int? ProjectID)
         {
-            ViewBag.ProjectID = ProjectID;
+            if (ProjectID == null)
+            {
+                return RedirectToAction("Index", "Project");
+            }
 
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateTask([Bind(Include = "TaskID, CreatedOn, Headline, Description, Completed")] TaskViewModel taskvm, int ProjectID)
+        public ActionResult CreateTask([Bind(Include = "TaskID, CreatedOn, Headline, HoursToComplete, Description, Completed, ProjectID")] TaskViewModel taskvm, int ProjectID)
         {
             if (ModelState.IsValid)
             {
-                var date = DateTime.Today;
+                var date = DateTime.Now;
                 taskvm.CreatedOn = date;
 
                 var taskModel = Mapper.Map<Task>(taskvm);
@@ -83,19 +86,19 @@ namespace Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditTask([Bind(Include = "TaskID, CreatedOn, Headline, Description, Completed")] TaskViewModel task, int ProjectID, int TaskID)
+        public ActionResult EditTask([Bind(Include = "TaskID, CreatedOn, Headline, Description, HoursToComplete, Completed, ProjectID")] TaskViewModel task)
         {
+            Debug.WriteLine("Project ID: " + task.ProjectID + " - TaskID: " + task.TaskID);
+
             if (ModelState.IsValid)
             {
-                task.Project.ProjectID = ProjectID;
-
                 var model = Mapper.Map<Task>(task);
 
                 _repo.Update(model);
 
                 _uow.Save();
 
-                return RedirectToAction("TaskIndex", "Project", new { ID = ProjectID });
+                return RedirectToAction("TaskIndex", "Project", new { ID = task.ProjectID });
             }
 
             return View(task);
@@ -116,23 +119,12 @@ namespace Web.Controllers
 
             ViewBag.Message = "Delete task";
 
-            var project = _repo.GetByKey(ProjectID);
-            if (project == null)
+            var taskModel = _repo.GetByKey(TaskID);
+            if (taskModel == null)
             {
                 return HttpNotFound();
             }
-
-            Task taskModel = null;
-            //if (project.Tasks.FirstOrDefault(task => task.TaskID == TaskID) != null)
-            //{
-            //    taskModel = project.Tasks.SingleOrDefault(task => task.TaskID == TaskID);
-            //}
-            //else
-            //{
-            //    return RedirectToAction("TaskIndex", "Project", new { ID = ProjectID });
-            //}
-                
-            
+ 
             var tvm = Mapper.Map<TaskViewModel>(taskModel);
 
             return View(tvm);
@@ -142,15 +134,9 @@ namespace Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteTask(int ProjectID, int TaskID)
         {
-            //var project = _repo.GetByKey(ProjectID);
-            //if (project.Tasks.FirstOrDefault(task => task.TaskID == TaskID) != null)
-            //{
-            //    var taskModel = project.Tasks.SingleOrDefault(task => task.TaskID == TaskID);
-            //    project.Tasks.Remove(taskModel);
-            //}
-            //_repo.Update(project);
+            _repo.DeleteByKey(TaskID);
 
-            //_uow.Save();
+            _uow.Save();
 
             return RedirectToAction("TaskIndex", "Project", new { ID = ProjectID });
         }

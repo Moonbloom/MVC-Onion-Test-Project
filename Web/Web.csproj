@@ -365,6 +365,9 @@
     <Content Include="Views\SocialAuth\Index.cshtml" />
     <Content Include="Views\EnPlanTest\Index.cshtml" />
     <Content Include="Views\ProjectWebApi\Index.cshtml" />
+    <Content Include="Views\Project\CreateProject.cshtml" />
+    <Content Include="Views\Project\EditProject.cshtml" />
+    <Content Include="Views\Project\DeleteProject.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

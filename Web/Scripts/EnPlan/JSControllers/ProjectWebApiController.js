@@ -10,19 +10,29 @@
 
     var bindGetProjectNamesBtnTo = function (eventType, selector) {
         selector.on(eventType, function () {
+            viewModel.View(1);
             notify.info("Retrieving project names ...");
             backend.GetAllProjectNames().done(function (response) {
-                console.log(response);
+                viewModel.projNames(response);
             });
         });
     };
 
     var bindGetProjectInfoBtnTo = function (eventType, selector) {
         selector.on(eventType, function () {
+            viewModel.View(2);
             notify.info("Retrieving chosen project information ...");
             backend.GetProjectInfo(viewModel.searchId()).done(function (response) {
-                console.log(response);
+                viewModel.projInfo(response);
+                viewModel.taskList(response.Tasks);
             });
+        });
+    };
+
+    var bindClearBtnTo = function(eventType, selector) {
+        selector.on(eventType, function() {
+            viewModel.View(0);
+            notify.info("List has been cleared");
         });
     };
 
@@ -30,6 +40,7 @@
         init: init,
         viewModel: viewModel,
         bindGetProjectNamesBtnTo: bindGetProjectNamesBtnTo,
-        bindGetProjectInfoBtnTo: bindGetProjectInfoBtnTo
+        bindGetProjectInfoBtnTo: bindGetProjectInfoBtnTo,
+        bindClearBtnTo: bindClearBtnTo
     };
 };

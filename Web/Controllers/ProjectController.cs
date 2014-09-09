@@ -1,9 +1,11 @@
-﻿using AutoMapper;
+﻿using System.Diagnostics;
+using AutoMapper;
 using Core.DomainModel;
 using Core.DomainServices;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using Web.Models;
 
 namespace Web.Controllers
@@ -49,70 +51,104 @@ namespace Web.Controllers
         }
         #endregion
 
-        //#region Create
-        //public ActionResult CreateProject()
-        //{
-        //    return View();
-        //}
+        #region Create
+        public ActionResult CreateProject()
+        {
+            ViewBag.Message = "Create Project";
 
-        //[HttpPost]
-        //public ActionResult CreateProject(FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add insert logic here
+            return View();
+        }
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-        //#endregion
+        [HttpPost]
+        public ActionResult CreateProject([Bind(Include = "Name")] ProjectViewModel projvm)
+        {
+            if (ModelState.IsValid)
+            {
+                var projectModel = Mapper.Map<Project>(projvm);
 
-        //#region Edit
-        //public ActionResult EditProject(int id)
-        //{
-        //    return View();
-        //}
+                _repo.Insert(projectModel);
+                _uow.Save();
 
-        //[HttpPost]
-        //public ActionResult EditProject(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
+                return RedirectToAction("Index");
+            }
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-        //#endregion
+            return View(projvm);
+        }
+        #endregion
 
-        //#region Delete
-        //public ActionResult DeleteProject(int id)
-        //{
-        //    return View();
-        //}
+        #region Edit
+        public ActionResult EditProject(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
 
-        //[HttpPost]
-        //public ActionResult DeleteProject(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
+            ViewBag.Message = "Edit Project";
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-        //#endregion
+            var projectModel = _repo.GetByKey(id);
+            if (projectModel == null)
+            {
+                return HttpNotFound();
+            }
+
+
+            var projvm = Mapper.Map<ProjectViewModel>(projectModel);
+
+            return View(projvm);
+        }
+
+        [HttpPost]
+        public ActionResult EditProject([Bind(Include = "Name, ProjectID")] ProjectViewModel projvm)
+        {
+            if (ModelState.IsValid)
+            {
+                var tasks = _repo.GetByKey(projvm.ProjectID).Tasks;
+                var taskvm = Mapper.Map<ICollection<TaskViewModel>>(tasks);
+
+                projvm.Tasks = taskvm;
+
+                var projModel = Mapper.Map<Project>(projvm);
+
+                _repo.Update(projModel);
+                _uow.Save();
+
+                return RedirectToAction("Index");
+            }
+
+            return View(projvm);
+        }
+        #endregion
+
+        #region Delete
+        public ActionResult DeleteProject(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Message = "Delete task";
+
+            var project = _repo.GetByKey(id);
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+
+            var projvm = Mapper.Map<ProjectViewModel>(project);
+
+            return View(projvm);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteProject(int id)
+        {
+            _repo.DeleteByKey(id);
+            _uow.Save();
+
+            return RedirectToAction("Index");
+        }
+        #endregion
     }
 }
