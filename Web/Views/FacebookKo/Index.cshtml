@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "FacebookAng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Message</h2>
+
+
+<script src="~/Scripts/EnPlan/JSViewModels/FacebookViewModel.js"></script>
+<script src="~/Scripts/EnPlan/JSControllers/FacebookController.js"></script>
+
+<div id="facebookOuterDiv">
+    <div id="fb-root"></div>
+
+    <button class="five-px-margin-bottom" id="facebookLoginButton">Login with Facebook</button>
+
+    <button id="facebookLogoutButton">Logout of Facebook</button>
+
+    <button id="checkAccessToken">Check Access Token</button>
+    <br />
+    <button class="five-px-margin-bottom" id="getMeData">Get Me</button>
+
+    <button id="getFriendsData">Get Friends</button>
+    <button id="clearBtn">Clear</button>
+    <br />
+
+    <div data-bind="'visible': View() == 1">
+        <!-- Show friends list -->
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    ID
+                </th>
+            </tr>
+
+            <tr ng-repeat="friend in friendList">
+                <td>
+                    <img style="display: block; margin: auto auto; max-height: 100px; max-width: 100px" class="img-circle" src="https://graph.facebook.com/{{friend.id}}/picture?type=large" />
+                </td>
+                <td>
+                    <a href="https://facebook.com/{{friend.id}}" target="_blank">{{friend.name}}</a>
+                </td>
+                <td>
+                    {{friend.id}}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div data-bind="'visible': View() == 2">
+        <!-- Show user info -->
+        lol
+    </div>
+</div>
+
+<script type="text/javascript">
+    var notify = new NotificationService($("body"));
+    var fbController = new FacebookController(new FacebookViewModel(), notify);
+
+    $(document).ready(function () {
+        fbController.init($("#facebookOuterDiv"));
+        fbController.bindClearBtnTo("click", $("#clearBtn"));
+        fbController.bindFacebookLoginButtonTo("click", $("#facebookLoginButton"));
+        fbController.bindFacebookLogoutButtonTo("click", $("#facebookLogoutButton"));
+        fbController.bindCheckAccessTokenTo("click", $("#checkAccessToken"));
+        fbController.bindGetMeDataTo("click", $("#getMeData"));
+        fbController.bindGetFriendsDataTo("click", $("#getFriendsData"));
+    });
+</script>

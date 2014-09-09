@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "FacebookAng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Message</h2>
+
+<div ng-app="facebookApp" ng-controller="facebookFriendListController">
+
+    <div id="fb-root"></div>
+
+    <button class="five-px-margin-bottom" id="facebookLoginButton" ng-click="facebookLoginButton()">Login with Facebook</button>
+
+    <button id="facebookLogoutButton" ng-click="facebookLogoutButton()">Logout of Facebook</button>
+
+    <button id="checkAccessToken" ng-click="checkAccessToken()">Check Access Token</button>
+    <br />
+    <button class="five-px-margin-bottom" id="getMe" ng-click="getMe()">Get Me</button>
+
+    <button id="getFriends" ng-click="getFriends()">Get Friends</button>
+
+    <br />
+    
+    <div ng-show="showFriendsList()">
+        <!-- Show friends list -->
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    ID
+                </th>
+            </tr>
+
+            <tr ng-repeat="friend in friendList">
+                <td>
+                    <img style="display: block; margin: auto auto; max-height: 100px; max-width: 100px" class="img-circle" src="https://graph.facebook.com/{{friend.id}}/picture?type=large" />
+                </td>
+                <td>
+                    <a href="https://facebook.com/{{friend.id}}" target="_blank">{{friend.name}}</a>
+                </td>
+                <td>
+                    {{friend.id}}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div ng-hide="showFriendsList()">
+        <!-- Show user info -->
+        lol
+    </div>
+</div>
+
+<script src="~/Scripts/Facebook/facebookApp.js"></script>
+<script src="~/Scripts/Facebook/facebookFriendListController.js"></script>

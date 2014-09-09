@@ -214,7 +214,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\FacebookController.cs" />
+    <Compile Include="Controllers\FacebookAngController.cs" />
+    <Compile Include="Controllers\FacebookKoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\EnPlanTestController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -285,7 +286,9 @@
     <Content Include="fonts\lato\lato-regular.woff" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\EnPlan\JSControllers\FacebookController.js" />
     <Content Include="Scripts\EnPlan\JSControllers\ProjectWebApiController.js" />
+    <Content Include="Scripts\EnPlan\JSViewModels\FacebookViewModel.js" />
     <Content Include="Scripts\EnPlan\JSViewModels\ProjectWebApiViewModel.js" />
     <Content Include="Scripts\EnPlan\Services\BackendServices\ProjectBackendService.js" />
     <Content Include="Scripts\EnPlan\Services\AjaxService.js" />
@@ -361,13 +364,14 @@
     <Content Include="Views\Task\DeleteTask.cshtml" />
     <Content Include="Views\Task\CreateTask.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
-    <Content Include="Views\Facebook\Index.cshtml" />
+    <Content Include="Views\FacebookAng\Index.cshtml" />
     <Content Include="Views\SocialAuth\Index.cshtml" />
     <Content Include="Views\EnPlanTest\Index.cshtml" />
     <Content Include="Views\ProjectWebApi\Index.cshtml" />
     <Content Include="Views\Project\CreateProject.cshtml" />
     <Content Include="Views\Project\EditProject.cshtml" />
     <Content Include="Views\Project\DeleteProject.cshtml" />
+    <Content Include="Views\FacebookKo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

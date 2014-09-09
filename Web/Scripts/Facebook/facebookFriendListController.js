@@ -1,5 +1,6 @@
 ﻿var facebookFriendListController = angular.module('facebookFriendListController', []);
 var accessToken = "";
+var showFriends = false;
 
 facebookFriendListController.controller('facebookFriendListController', ['$scope', function ($scope) {
         $scope.facebookLoginButton = function() {
@@ -28,16 +29,22 @@ facebookFriendListController.controller('facebookFriendListController', ['$scope
 
         $scope.getMe = function() {
             FB.api('/me', function (response) {
+                showFriends = false;
                 console.log(JSON.stringify(response));
             });
         };
 
         $scope.getFriends = function () {
             FB.api('/me/friends', function (response) {
+                showFriends = true;
                 console.log(JSON.stringify(response));
                 $scope.friendList = response.data;
                 $scope.$apply();
             });
+        };
+
+        $scope.showFriendsList = function() {
+            return showFriends;
         };
     }
 ]);
